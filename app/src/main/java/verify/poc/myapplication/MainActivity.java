@@ -4,6 +4,7 @@ import com.microsoft.appcenter.AppCenter;
 import com.microsoft.appcenter.analytics.Analytics;
 import com.microsoft.appcenter.crashes.Crashes;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,10 +28,11 @@ public class MainActivity extends AppCompatActivity {
         AppCenter.start(getApplication(), "f5cf20cc-758a-4d66-ad02-06e51d2cd66d", Analytics.class, Crashes.class);
 
       //  Fabric.with(this, new Crashlytics());
-        setUserId();
+
         resetKey();
        forceACrash();
         forceANR();
+        setUserId();
 
     }
 
@@ -75,7 +77,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void setUserId() {
         // [START crash_set_user_id]
-        Crashlytics.setUserIdentifier("sanqa100436");
+        Crashlytics.setUserIdentifier("abcbnk100436");
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                crashapp();
+            }
+        }, 5000);
         // [END crash_set_user_id]
     }
 
@@ -104,13 +113,17 @@ public class MainActivity extends AppCompatActivity {
         // [END crash_enable_debug_mode]
     }
 
+    public void crashapp(){
+
+    }
+
     public void forceACrash() {
         // [START crash_force_crash]
-        Button crashButton = (Button) findViewById(R.id.crashButton);
+        final Button crashButton = (Button) findViewById(R.id.crashButton);
         //crashButton.setText("Crash!");
         crashButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Crashlytics.getInstance().crash(); // Force a crash
+                crashapp();
             }
         });
 
