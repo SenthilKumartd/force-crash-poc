@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 crashapp();
             }
-        }, 5000);
+        }, 2000);
         // [END crash_set_user_id]
     }
 
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void crashapp(){
-
+        Crashlytics.getInstance().crash();
     }
 
     public void forceACrash() {
